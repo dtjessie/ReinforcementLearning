@@ -47,9 +47,8 @@ def main(environment, file_out, weight_file, action_value, f_duration, watch, sa
         images = []
     while not done:
         global_step += 1
-        # Use target_dqn to make Q-values
-        # online_dqn then takes epsilon-greedy action
-        q_values = target_dqn.model.predict(state)[0]
+
+        q_values = online_dqn.model.predict(state)[0]
 
         if done_flags is False:
             action = online_dqn.action(q_values, online_dqn.epsilon)
