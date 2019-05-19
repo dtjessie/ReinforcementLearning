@@ -55,6 +55,6 @@ memory_size: 750000
 log_interval: 100
 ~~~
 Typical play after a day or so:
-![Typical result](https://github.com/dtjessie/ReinforcementLearning/ddqn/atari/Breakout_example.gif)
+![Typical result](https://github.com/dtjessie/ReinforcementLearning/blob/master/ddqn/atari/Breakout_example.gif)
 A bit higher score:
-![Higher score](https://github.com/dtjessie/ReinforcementLearning/ddqn/atari/Breakout_257.gif)
+![Higher score](https://github.com/dtjessie/ReinforcementLearning/blob/master/ddqn/atari/Breakout_257.gif)
