@@ -34,7 +34,8 @@ usage: DDQN_Learning.py [-h] [--env ENV] [--loss_function LOSS_FUNCTION]
 ```
 ## CartPole-v0
 
-This is the simple first environment to test algorithms in. Even with an algorithm that solves CartPole (solving means an average score of at least 195 in 100 consecutive rounds), there can be issues. For example, with the DDQN code above we run with parameters
+This is the simple first environment to test algorithms in. Solving the CartPole environment means having an average score above 195 over 100 consecutive rounds. The paramaters below will solve CartPole in a couple minutes.
+
 ~~~
 loss_function: huber_loss
 actionvalue: epsilon_greedy
