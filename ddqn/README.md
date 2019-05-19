@@ -55,4 +55,4 @@ memory_size: 750000
 log_interval: 100
 ~~~
 
-![Typical result](https://github.com/dtjessie/ReinforcementLearning/blob/master/ddqn/Cartpole-v0.gif)
+![Typical result](https://github.com/dtjessie/ReinforcementLearning/blob/master/ddqn/CartPole-v0.gif)
