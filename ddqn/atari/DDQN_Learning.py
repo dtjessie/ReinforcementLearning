@@ -99,17 +99,18 @@ def setup_logs(environment, time_stamp, base_dir='./logs/'):
 
 
 def main(environment, loss_function, action_value, use_CNN,
-         total_games, max_time_per_game, burn_in,
-         training_interval, target_update_interval, save_interval,
+         total_games, burn_in, training_interval,
+         target_update_interval, save_interval,
          num_epochs, batch_size, learning_rate,
-         epsilon_max, epsilon_min, epsilon_decay_steps, gamma, memory_size, log_interval):
+         epsilon_max, epsilon_min, epsilon_decay_steps,
+         gamma, memory_size, log_interval):
     # Set up logging
     start_time = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
     log_dir, parameter_file, score_file = setup_logs(environment, start_time)
 
     ################################
     # Save our training parameters #
-    line = "loss_function: {}\nactionvalue: {}\ntotal_games: {}\nmax_time_per_game: {}\ntraining_interval: {}\ntarget_update_interval: {}\nsave_interval: {}\nnum_epochs: {}\nbatch_size: {}\nlearning_rate: {}\nepsilon_max: {}\nepsilon_min: {}\nepsilon_decay_steps: {}\ngamma: {}\nmemory_size: {}\nlog_interval: {}\n".format(loss_function, action_value, total_games, max_time_per_game, training_interval, target_update_interval,
+    line = "loss_function: {}\nactionvalue: {}\ntotal_games: {}\ntraining_interval: {}\ntarget_update_interval: {}\nsave_interval: {}\nnum_epochs: {}\nbatch_size: {}\nlearning_rate: {}\nepsilon_max: {}\nepsilon_min: {}\nepsilon_decay_steps: {}\ngamma: {}\nmemory_size: {}\nlog_interval: {}\n".format(loss_function, action_value, total_games, training_interval, target_update_interval,
             save_interval, num_epochs, batch_size, learning_rate, epsilon_max, epsilon_min, epsilon_decay_steps, gamma, memory_size, log_interval)
     os.write(parameter_file, line)
     ################################
@@ -140,16 +141,8 @@ def main(environment, loss_function, action_value, use_CNN,
 
     target_dqn.update_target_weights(online_dqn.model)
 
-    # Solved criterion for CartPole, LunarLander, etc
-    if environment == "CartPole-v0":
-        solved_thresh = 195.0
-        max_time_per_game = 200
-    elif environment == "LunarLander-v2":
-        solved_thresh = 200.0
-        max_time_per_game = 1000
-    else:
-        solved_thresh = 500.0
-        print("Not sure solution condition for {}; using average of 100 rounds > {}".format(environment, solved_thresh))
+    # Include a threshold value to stop training
+    solved_thresh = 500
 
     print("Playing {} using loss {} and action {}").format(environment, loss_function, action_value)
 
@@ -291,7 +284,7 @@ if __name__ == "__main__":
     parser.add_argument("--log_interval", type=int, default=100)
     args = parser.parse_args()
     main(args.env, args.loss_function, args.action_value, args.use_CNN,
-         args.total_games, args.max_time_per_game, args.burn_in,
+         args.total_games, args.burn_in,
          args.training_interval, args.target_update_interval, args.save_interval,
          args.num_epochs, args.batch_size, args.learning_rate,
          args.epsilon_max, args.epsilon_min, args.epsilon_decay_steps, args.gamma, args.memory_size,
