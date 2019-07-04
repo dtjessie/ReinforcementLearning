@@ -10,7 +10,7 @@ The critc learns the value of each state S rather than an individual action A. T
 
 ## How to use?
 
-THe main file is the A2C.py file that can be called from the command line with a number of different parameters:
+The main file is the A2C.py file that can be called from the command line with a number of different parameters:
 
 ```
 python A2C.py --help
